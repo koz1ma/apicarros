@@ -76,7 +76,7 @@ $app->post('/accessories/{id}/edit', function ($request, $response, $args) {
                                         nome = :nome,
                                         status = :status
                                     WHERE 
-                                        idmodelo = :id ');
+                                        idacessorio = :id ');
     $result->bindParam(':id', $id, PDO::PARAM_INT);
     $result->bindParam(':nome', $nome, PDO::PARAM_STR);
     $result->bindParam(':status', $status, PDO::PARAM_STR);
@@ -219,13 +219,19 @@ $app->delete('/models/{id}/accessories/delete', function ($request, $response, $
     $id_accessory = filter_var($data['id_acessorio'], FILTER_SANITIZE_NUMBER_INT);
 
     $result = $this->db->prepare('	DELETE FROM 
-    									modelo_acessorio ma
+    									modelo_acessorio
 	    							WHERE 
-	    								ma.modelo_idmodelo = :id AND ma.acessorio_idacessorio = :id_acessorio ');
+	    								modelo_idmodelo = :id AND 
+                                        acessorio_idacessorio = :id_acessorio ');
 	$result->bindParam(':id', $id, PDO::PARAM_INT);
 	$result->bindParam(':id_acessorio', $id_accessory, PDO::PARAM_INT);
+    $success = $result->execute();
 
-	return $response->withJson($result->execute());
+    if(!$success){
+        return $response->withJson($result->errorInfo());
+    }else{
+        return $response->withJson("Acessório excluido com sucesso.");
+    }
 });
 
 //função para adicionar um acessorio a um modelo
@@ -248,8 +254,14 @@ $app->post('/models/{id}/accessories/add', function ($request, $response, $args)
 	    								( :id, :id_acessorio) ');
 	$result->bindParam(':id', $id, PDO::PARAM_INT);
 	$result->bindParam(':id_acessorio', $id_accessory, PDO::PARAM_INT);
+    $success = $result->execute();
 
-	return $response->withJson($result->execute());
+    if(!$success){
+        return $response->withJson($result->errorInfo());
+    }else{
+        return $response->withJson("Acessório adicionado com sucesso.");
+    }
+
 });
 
 //função para adicionar um modelo
