@@ -6,10 +6,10 @@ return [
         'jwt_key' => 'CHAVESUPERSECRETADAAPI',
 
         'db' => [
-            'host' => 'localhost',
-            'user' => 'root',
-            'password' => '',
-            'dbname' => 'carros'
+            'host' => 'kozima.mysql.dbaas.com.br',
+            'user' => 'kozima',
+            'password' => 'kozima123',
+            'dbname' => 'kozima'
         ]
     ],
 ];
