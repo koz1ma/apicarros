@@ -12,4 +12,4 @@ Para rodar a API:
   2)copie todo o repositório para a pasta pública do seu servidor web(public_html ou htdocs)
   3)mude as configurações do arquivo src/settings.php de acordo com o seu BD e chave de preferencia(JWT)
   4)teste a api de acordo com as informações contidas em - https://www.getpostman.com/collections/7beb936602fe49d5a0bd
-   *lembrar de colocar o endereço do seu servidor já que as informações na coleção acima estão assumindo que o endereço seja o localhost.
+   *lembrar de colocar o endereço do seu servidor já que as informações na coleção acima estão apontando para o meu app em produção
